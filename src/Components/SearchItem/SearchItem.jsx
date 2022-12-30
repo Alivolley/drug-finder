@@ -3,19 +3,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import pic from "./../../assets/Images/1.jpg";
 
-export default function SearchItem() {
+export default function SearchItem({ perTitle, engTilte, avalible }) {
    return (
-      <SearchItemWrapper to="/">
+      <SearchItemWrapper to={`/chosen/${perTitle}`}>
          <Image src={pic} />
          <Describes>
-            <Title>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</Title>
-            <Text>
-               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-               لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده،
-               شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد
-               کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی،
-               و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-            </Text>
+            <Title>{perTitle.slice(2, perTitle.length - 1)}</Title>
+            <Text>{engTilte.slice(2, engTilte.length - 1)}</Text>
+            <Avalible>وضعیت موجودی : {avalible ? "موجود" : "به اتمام رسیده"}</Avalible>
          </Describes>
       </SearchItemWrapper>
    );
@@ -30,6 +25,7 @@ const SearchItemWrapper = styled(Link)`
    border-radius: 1rem;
    text-decoration: none;
    color: black;
+   background-color: whitesmoke;
 `;
 
 const Image = styled.img`
@@ -47,8 +43,14 @@ const Title = styled.div`
    font-weight: 700;
 `;
 
-const Text = styled.div`
+const Text = styled.p`
    line-height: 2.8rem;
    font-size: 1.5rem;
    margin-top: 3rem;
+`;
+
+const Avalible = styled.p`
+   font-size: 1.5rem;
+   margin-top: 3rem;
+   color: #0abead;
 `;

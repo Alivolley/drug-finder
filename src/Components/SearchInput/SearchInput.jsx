@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { CgSearch } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SearchInput() {
+   const [inputValue, setInputValue] = useState("");
+   const navigate = useNavigate();
+
+   // console.log(inputValue);
+
+   const searchTheWord = (e) => {
+      e.preventDefault();
+      inputValue && navigate(`/search/${inputValue}`);
+   };
+
    return (
-      <SearchBox>
-         <Input placeholder="نام دارو برای مثال آنتی هیستامین" />
-         <SearchButtun to="/">
+      <SearchBox onSubmit={searchTheWord}>
+         <Input placeholder="نام دارو برای مثال آنتی هیستامین" onChange={(e) => setInputValue(e.target.value)} value={inputValue} />
+         <SearchButtun type="submit">
             جست و جو
             <Icon />
          </SearchButtun>
@@ -15,7 +25,7 @@ export default function SearchInput() {
    );
 }
 
-const SearchBox = styled.div`
+const SearchBox = styled.form`
    margin-top: 3rem;
    direction: rtl;
    width: 50rem;
@@ -35,7 +45,7 @@ const Input = styled.input`
    outline: none;
 `;
 
-const SearchButtun = styled(Link)`
+const SearchButtun = styled.button`
    background-color: #0d6efd;
    color: white;
    text-decoration: none;
@@ -46,6 +56,7 @@ const SearchButtun = styled(Link)`
    width: 25%;
    gap: 1rem;
    font-size: 1.5rem;
+   border: none;
 `;
 
 const Icon = styled(CgSearch)`
