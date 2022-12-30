@@ -16,8 +16,6 @@ export default function SearchResults() {
          .catch((err) => console.log(err));
    }, [word]);
 
-   console.log(result);
-
    return (
       <SearchResultsWrapper>
          <Header />
